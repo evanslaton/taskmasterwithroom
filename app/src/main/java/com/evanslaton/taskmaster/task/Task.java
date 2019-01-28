@@ -1,32 +1,28 @@
-package com.evanslaton.taskmaster.project;
+package com.evanslaton.taskmaster.task;
 
-import com.evanslaton.taskmaster.task.Task;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.evanslaton.taskmaster.project.Project;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-import androidx.room.Relation;
-
 import static androidx.room.ForeignKey.CASCADE;
-
 
 // https://android.jlelse.eu/android-architecture-components-room-relationships-bf473510c14a
 // http://androidkt.com/database-relationships/
-//@Entity(foreignKeys = @ForeignKey(entity = Task.class,
+//@Entity(foreignKeys = @ForeignKey(entity = Project.class,
 //        parentColumns = "id",
 //        childColumns = "projectId",
 //        onDelete = CASCADE))
 
-public class Project {
+public class Task {
     @PrimaryKey(autoGenerate = true)
     protected long id;
+    protected long projectId;
     protected String title;
+    protected String state;
 
-    public Project(String title) {
+    public Task(String title) {
         this.title = title;
+        this.state = "Available";
     }
-
 }
