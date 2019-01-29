@@ -14,6 +14,9 @@ import java.util.List;
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHolder> {
     private List<Project> projects;
 
+    // https://stackoverflow.com/questions/24471109/recyclerview-onclick
+    private final View.OnClickListener projectOnClickListener = new ProjectOnClickListener();
+
     // Provides a reference to the views for each Project
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View mView;
@@ -44,6 +47,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.project_view, parent, false);
+        v.setOnClickListener(projectOnClickListener); // Adds an onClick listener
 
         // set the view's size, margins, padding and layout parameters
         ViewHolder vh = new ViewHolder(v);
