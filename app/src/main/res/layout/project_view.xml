@@ -14,6 +14,13 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="0dp">
 
+        <!--http://androidsbs.blogspot.com/2013/12/androidvisibility-hide-textview.html-->
+        <TextView
+            android:id="@+id/projectId"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility = "gone" />
+
         <TextView
             android:id="@+id/projectTitle"
             android:layout_width="match_parent"
