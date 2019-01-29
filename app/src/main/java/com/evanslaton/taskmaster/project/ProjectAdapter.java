@@ -14,7 +14,7 @@ import java.util.List;
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHolder> {
     private List<Project> projects;
 
-    // Provides a reference to the views for each data item
+    // Provides a reference to the views for each Project
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View mView;
         public TextView projectTitle;
@@ -23,13 +23,19 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
         public ViewHolder(View v) {
             super(v);
             mView = v;
-            projectTitle = (TextView) v.findViewById(R.id.projectTitle);
+            projectTitle = v.findViewById(R.id.projectTitle);
         }
     }
 
     // Constructor
     public ProjectAdapter(List<Project> projects) {
         this.projects = projects;
+    }
+
+    // Updates the projects list
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+        this.notifyDataSetChanged();
     }
 
     // Create a new view (invoked by the layout manager)

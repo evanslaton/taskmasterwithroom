@@ -7,6 +7,7 @@ import androidx.room.Room;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.evanslaton.taskmaster.project.Project;
@@ -18,12 +19,13 @@ import java.util.List;
 
 // From Google's Android docs and http://www.vogella.com/tutorials/AndroidRecyclerView/article.html
 public class MainActivity extends AppCompatActivity {
+    // Database variables
     protected ProjectDatabase projectDatabase;
     protected List<Project> projects = new ArrayList<>();
 
     // Recycler View variables
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private ProjectAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 'Creates' the database
         projectDatabase = Room.databaseBuilder(getApplicationContext(),
-                ProjectDatabase.class, "projectDB")
+                ProjectDatabase.class, "projectDatabase")
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
                 .build();
@@ -65,5 +67,18 @@ public class MainActivity extends AppCompatActivity {
         String projectTitle = projectTextView.getText().toString();
         projectDatabase.projectDao().insertProject(new Project(projectTitle));
         projectTextView.setText(""); // Empties the input field
+
+        // Updates the recycler view
+        projects = projectDatabase.projectDao().getAll();
+        adapter. setProjects(projects);
+
+        // https://stackoverflow.com/questions/13593069/androidhide-keyboard-after-button-click/13593232 (second answer)
+        // Hides the keyboard
+        try {
+            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e) {
+            // Do nothing
+        }
     }
 }
