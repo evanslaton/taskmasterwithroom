@@ -10,7 +10,7 @@ import androidx.room.Query;
 public interface TaskDao {
     // Inserts a task into the database
     @Insert
-    void insertExercise(Task task);
+    void insertTask(Task task);
 
     // Gets the task with the inputted id from the database
     @Query("SELECT * FROM task WHERE id=:id")

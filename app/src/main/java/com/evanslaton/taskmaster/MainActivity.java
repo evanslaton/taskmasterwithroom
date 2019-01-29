@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.evanslaton.taskmaster.project.Project;
 import com.evanslaton.taskmaster.project.ProjectAdapter;
@@ -46,10 +48,6 @@ public class MainActivity extends AppCompatActivity {
             projects.add(new Project("DoTheNeedful"));
             projects.add(new Project("DoTheNeedful2"));
             projects.add(new Project("DoTheNeedful3"));
-            projects.add(new Project("DoTheNeedful4"));
-            projects.add(new Project("DoTheNeedful5"));
-            projects.add(new Project("DoTheNeedful6"));
-            projects.add(new Project("DoTheNeedful7"));
         }
 
         // Creates a layout manager and assigns it to the recycler view
@@ -59,5 +57,13 @@ public class MainActivity extends AppCompatActivity {
         // Specifies which adapter the recycler view should use
         adapter = new ProjectAdapter(projects);
         recyclerView.setAdapter(adapter);
+    }
+
+    // Adds a new project to the Project Database
+    public void createProject(View v) {
+        TextView projectTextView = findViewById(R.id.createProjectTitle);
+        String projectTitle = projectTextView.getText().toString();
+        projectDatabase.projectDao().insertProject(new Project(projectTitle));
+        projectTextView.setText(""); // Empties the input field
     }
 }

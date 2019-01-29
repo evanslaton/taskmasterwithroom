@@ -10,7 +10,7 @@ import androidx.room.Query;
 public interface ProjectDao {
     // Inserts a project into the database
     @Insert
-    void insertExercise(Project project);
+    void insertProject(Project project);
 
     // Gets the project with the inputted id from the database
     @Query("SELECT * FROM project WHERE id=:id")
