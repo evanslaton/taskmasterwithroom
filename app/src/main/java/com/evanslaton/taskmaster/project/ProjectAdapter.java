@@ -17,9 +17,6 @@ import java.util.List;
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHolder> {
     private List<Project> projects;
 
-    // https://stackoverflow.com/questions/24471109/recyclerview-onclick
-//    private final View.OnClickListener projectOnClickListener = new ProjectOnClickListener();
-
     // Provides a reference to the views for each Project
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public View mView;
@@ -57,10 +54,12 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
                 new View.OnClickListener() {
                     @Override
                     public void onClick(final View view) {
-                        TextView title = view.findViewById(R.id.projectTitle);
-                        TextView id = view.findViewById(R.id.projectId);
-                        Log.i("Project Title", id.getText().toString() + " " + title.getText().toString());
-                        goToProject(view);
+                        TextView idView = view.findViewById(R.id.projectId);
+                        TextView titleView = view.findViewById(R.id.projectTitle);
+                        String id = idView.getText().toString();
+                        String title = titleView.getText().toString();
+                        Log.i("Project Title", id + " " + title);
+                        goToProject(view, id, title);
                     }
                 });
 
@@ -85,8 +84,12 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
 
     // Takes the user to the ProjectWithTasks activity
     // https://stackoverflow.com/questions/4298225/how-can-i-start-an-activity-from-a-non-activity-class
-    public void goToProject(View v) {
+    public void goToProject(View v, String id, String title) {
         Intent goToProjectWithTasksIntent = new Intent(v.getContext(), ProjectWithTasks.class);
+
+        // https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android-application
+        goToProjectWithTasksIntent.putExtra("PROJECT_ID", id);
+        goToProjectWithTasksIntent.putExtra("PROJECT_TITLE", title);
         v.getContext().startActivity(goToProjectWithTasksIntent);
     }
 }

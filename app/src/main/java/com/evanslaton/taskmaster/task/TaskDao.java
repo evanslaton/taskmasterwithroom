@@ -18,7 +18,7 @@ public interface TaskDao {
 
     // Gets the task(s) with the inputted projectId from the database
     @Query("SELECT * FROM task WHERE projectId=:projectId")
-    Task getByProjectId(long projectId);
+    List<Task> getByProjectId(long projectId);
 
     // Gets all the tasks from the database
     @Query("SELECT * FROM task")

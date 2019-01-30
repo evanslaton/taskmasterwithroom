@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         // Gets all projects from the database
         projects = projectDatabase.projectDao().getAll();
 
+
+        // FOR TESTING ONLY
         if (projects.size() == 0) {
             projects.add(new Project("DoTheNeedful"));
             projects.add(new Project("DoTheNeedful2"));
