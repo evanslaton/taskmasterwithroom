@@ -1,4 +1,4 @@
-package com.evanslaton.taskmaster.project;
+package com.evanslaton.taskmaster.projectandtasks;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,9 +11,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.evanslaton.taskmaster.R;
+import com.evanslaton.taskmaster.project.Project;
+import com.evanslaton.taskmaster.project.ProjectDatabase;
 import com.evanslaton.taskmaster.task.Task;
 import com.evanslaton.taskmaster.task.TaskAdapter;
-import com.evanslaton.taskmaster.task.TaskDatabase;
+//import com.evanslaton.taskmaster.task.TaskDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +26,12 @@ public class ProjectWithTasks extends AppCompatActivity {
     protected String projectTitle;
 
     // Database variables
-    protected TaskDatabase taskDatabase;
-    protected List<Task> tasks = new ArrayList<>();
+//    protected TaskDatabase taskDatabase;
+//    protected List<Task> tasks = new ArrayList<>();
+
+    // Project variables
+    protected ProjectDatabase projectDatabase;
+    protected ProjectWithTasksPojo projectWithTasks;
 
     // Recycler View variables
     private RecyclerView recyclerView;
@@ -41,8 +47,8 @@ public class ProjectWithTasks extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.tasks);
 
         // 'Creates' the database
-        taskDatabase = Room.databaseBuilder(getApplicationContext(),
-                TaskDatabase.class, "taskDatabase")
+        projectDatabase = Room.databaseBuilder(getApplicationContext(),
+                ProjectDatabase.class, "projectDatabase")
                 .allowMainThreadQueries()
                 .fallbackToDestructiveMigration()
                 .build();
@@ -56,14 +62,15 @@ public class ProjectWithTasks extends AppCompatActivity {
         TextView projectLabel = findViewById(R.id.projectWithTaskLabel);
         projectLabel.setText(projectTitle);
 
-        // Gets all the project's tasks from the database
-        tasks = taskDatabase.taskDao().getByProjectId(projectId);
+        // Gets the project and it's tasks from the database
+//        tasks = taskDatabase.taskDao().getByProjectId(projectId);
+        projectWithTasks = projectDatabase.projectDao().getProjectWithTasks(projectId);
 
         // FOR TESTING ONLY
-        if (tasks.size() == 0) {
-            tasks.add(new Task("Task1", 1));
-            tasks.add(new Task("Task2", 2));
-            tasks.add(new Task("Task3", 3));
+        if (projectWithTasks.tasks.size() == 0) {
+            projectWithTasks.tasks.add(new Task("Task1", 1));
+            projectWithTasks.tasks.add(new Task("Task2", 2));
+            projectWithTasks.tasks.add(new Task("Task3", 3));
         }
 
         // Creates a layout manager and assigns it to the recycler view
@@ -71,7 +78,7 @@ public class ProjectWithTasks extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // Specifies which adapter the recycler view should use
-        adapter = new TaskAdapter(tasks);
+        adapter = new TaskAdapter(projectWithTasks.tasks);
         recyclerView.setAdapter(adapter);
     }
 
@@ -79,12 +86,13 @@ public class ProjectWithTasks extends AppCompatActivity {
     public void createTask(View v) {
         TextView taskTextView = findViewById(R.id.createTaskTitle);
         String taskTitle = taskTextView.getText().toString();
-        taskDatabase.taskDao().insertTask(new Task(taskTitle, this.projectId));
+        projectDatabase.taskDao().insertTask(new Task(taskTitle, this.projectId));
         taskTextView.setText(""); // Empties the input field
 
         // Updates the recycler view
-        tasks = taskDatabase.taskDao().getAll();
-        adapter.setTasks(tasks);
+        projectWithTasks = projectDatabase.projectDao().getProjectWithTasks(projectId);
+//        tasks = taskDatabase.taskDao().getAll();
+        adapter.setTasks(projectWithTasks.tasks);
 
         // https://stackoverflow.com/questions/13593069/androidhide-keyboard-after-button-click/13593232 (second answer)
         // Hides the keyboard

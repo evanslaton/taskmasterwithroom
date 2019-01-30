@@ -9,8 +9,9 @@ import androidx.room.PrimaryKey;
 
 // Creates the relationship between a task and project
 // http://androidkt.com/database-relationships/
-@Entity(foreignKeys =
-@ForeignKey(entity = Project.class, parentColumns = "id", childColumns = "projectId"))
+//@Entity(foreignKeys =
+//@ForeignKey(entity = Project.class, parentColumns = "id", childColumns = "projectId"))
+@Entity
 public class Task {
     @PrimaryKey(autoGenerate = true)
     protected long id;

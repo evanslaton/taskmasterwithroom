@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".project.ProjectWithTasks"
+            android:name=".projectandtasks.ProjectWithTasks"
             android:parentActivityName=".MainActivity" />
     </application>
 

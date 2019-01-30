@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.evanslaton.taskmaster.R;
+import com.evanslaton.taskmaster.projectandtasks.ProjectWithTasks;
 
 import java.util.List;
 
