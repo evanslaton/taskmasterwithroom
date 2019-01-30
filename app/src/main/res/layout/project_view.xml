@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp">
+
+        <!--http://androidsbs.blogspot.com/2013/12/androidvisibility-hide-textview.html-->
+        <TextView
+            android:id="@+id/projectId"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility = "gone" />
+
+        <TextView
+            android:id="@+id/projectTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="32dp"
+            android:paddingLeft="32dp"
+            android:paddingBottom="32dp"
+            android:textSize="23dp"
+            android:text="Project" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
