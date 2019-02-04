@@ -27,3 +27,13 @@ Project and Task are entities linked by the ProjectWithTasks Pojo (plain old Jav
 * Monday 1/28/2019 - Created project and database entities (Project and Task).
 * Tuesday 1/29/2019 - Created project recycler view, ability to add projects to room and create an event listener to be used to add tasks to a project.
 * Wednesday 1/20/2019 - Tasks can be added to projects
+
+## Resources
+* http://androidkt.com/database-relationships/
+* http://www.vogella.com/tutorials/AndroidRecyclerView/article.html
+* https://stackoverflow.com/questions/13593069/androidhide-keyboard-after-button-click/13593232 (second answer)
+* https://stackoverflow.com/questions/44330452/android-persistence-room-cannot-figure-out-how-to-read-this-field-from-a-curso/44424148#44424148
+* https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android-application
+* https://stackoverflow.com/questions/4298225/how-can-i-start-an-activity-from-a-non-activity-class
+* https://stackoverflow.com/questions/2091465/how-do-i-pass-data-between-activities-in-android-application
+* https://developer.android.com/docs/
