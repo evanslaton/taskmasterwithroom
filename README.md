@@ -15,7 +15,7 @@ This week, we will build up an app that allows tracking tasks on a project. (Hav
 
 |             Project List              |             Project1's Tasks           |             Project2's Tasks           |
 |---------------------------------------|----------------------------------------|----------------------------------------|
-| ![Lab 40](screenshots/screenshot.png) | ![Lab 40](screenshots/screenshot2.png) | ![Lab 40](screenshots/screenshot3.png) |
+| ![Lab 40](screenshots/screenshot.png) | ![Lab 40](screenshots/screenshot1.png) | ![Lab 40](screenshots/screenshot2.png) |
 
 ## Information Structure Using Room
 
