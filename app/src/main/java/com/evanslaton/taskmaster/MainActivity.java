@@ -46,18 +46,6 @@ public class MainActivity extends AppCompatActivity {
         // Gets all projects from the database
         projects = projectDatabase.projectDao().getAll();
 
-
-        // FOR TESTING ONLY
-        if (projects.size() == 0) {
-            projects.add(new Project("DoTheNeedful"));
-            projectDatabase.projectDao().insertProject(projects.get(0));
-            projects.add(new Project("DoTheNeedful2"));
-            projectDatabase.projectDao().insertProject(projects.get(1));
-            projects.add(new Project("DoTheNeedful3"));
-            projectDatabase.projectDao().insertProject(projects.get(2));
-            projects = projectDatabase.projectDao().getAll();
-        }
-
         // Creates a layout manager and assigns it to the recycler view
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
