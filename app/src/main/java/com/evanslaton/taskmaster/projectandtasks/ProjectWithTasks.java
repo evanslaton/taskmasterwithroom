@@ -25,10 +25,6 @@ public class ProjectWithTasks extends AppCompatActivity {
     protected long projectId;
     protected String projectTitle;
 
-    // Database variables
-//    protected TaskDatabase taskDatabase;
-//    protected List<Task> tasks = new ArrayList<>();
-
     // Project variables
     protected ProjectDatabase projectDatabase;
     protected ProjectWithTasksPojo projectWithTasks;
@@ -63,15 +59,7 @@ public class ProjectWithTasks extends AppCompatActivity {
         projectLabel.setText(projectTitle);
 
         // Gets the project and it's tasks from the database
-//        tasks = taskDatabase.taskDao().getByProjectId(projectId);
         projectWithTasks = projectDatabase.projectDao().getProjectWithTasks(projectId);
-
-        // FOR TESTING ONLY
-        if (projectWithTasks.tasks.size() == 0) {
-            projectWithTasks.tasks.add(new Task("Task1", 1));
-            projectWithTasks.tasks.add(new Task("Task2", 2));
-            projectWithTasks.tasks.add(new Task("Task3", 3));
-        }
 
         // Creates a layout manager and assigns it to the recycler view
         layoutManager = new LinearLayoutManager(this);
